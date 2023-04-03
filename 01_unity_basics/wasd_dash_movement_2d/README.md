@@ -1,7 +1,8 @@
-# [WASD Dash Movement in 2D](https://jaichong.github.io/css385/01_unity_basics/wasd_dash_movement_2d/build_webgl/)
+# WASD Dash Movement in 2D
+( [Repo](https://github.com/JaiChong/css385/tree/main/01_unity_basics/wasd_dash_movement_2d) / [Page](https://jaichong.github.io/css385/01_unity_basics/wasd_dash_movement_2d/) / [WebGL](https://jaichong.github.io/css385/01_unity_basics/wasd_dash_movement_2d/build_webgl) )
 
 ## Description
-This mechanic is a variation of the `wasd_movement_2d` project from the repo `t4guw/100-Unity-Mechanics-for-Programmers`; not forked to avoid cloning unwanted projects.  Changes enable dash movement in 2D for a user's character using a set of input keys.
+This mechanic is a variation of the [WASD Movement in 2D](https://github.com/t4guw/100-Unity-Mechanics-for-Programmers/tree/master/programs/wasd_movement_2d) project.  Changes enable dash movement in 2D for a user's character using a set of input keys.
 
 ## Implemented Changes
 1. A struct called `BufferData` stores the `int` down-counters `bufferFrames` and `dashFrames`, as well `bool`s that track whether `up`, `down`, `right`, and/or `left` inputs have been read within the buffer window implemented in `Update()`.
