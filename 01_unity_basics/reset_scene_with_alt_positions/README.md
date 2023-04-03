@@ -14,15 +14,12 @@ Since using additional scenes felt crude, I initially wanted to implement the al
 // doesn't work
 void Start()
 {
-    Debug.Log("Start()");
     if (Input.GetKey("left"))
     {
-        Debug.Log("left");
         this.transform.position = new Vector3 (-7, 0, 0);
     }
     else if (Input.GetKey("right"))
     {
-        Debug.Log("right");
         this.transform.position = new Vector3 (7, 0, 0);
     }
 }
