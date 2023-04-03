@@ -1,4 +1,4 @@
-# Quit Application on Key Press
+# [Quit Application on Key Press](https://jaichong.github.io/css385/01_unity_basics/quit_application_on_held_key_press/web_gl)
 
 ## Description
 This mechanic is a variation on the github project `t4guw/100-Unity-Mechanics-for-Programmers/projects/quit_application_on_key_press/`.  Changes enable the quitting of application using held key inputs, instead of just single key press inputs.
