@@ -1,5 +1,5 @@
 # Unity Basics
-( [Repo](https://github.com/JaiChong/css385/tree/main/01_unity_basics/wasd_dash_movement_2d) / [Page](https://jaichong.github.io/css385/01_unity_basics/wasd_dash_movement_2d/) / [WebGL](https://jaichong.github.io/css385/01_unity_basics/wasd_dash_movement_2d/build_webgl) )
+( [Repo](https://github.com/JaiChong/css385/tree/main/01_unity_basics/) / [Page](https://jaichong.github.io/css385/01_unity_basics/) )
 
 ## Description
 This assignment focuses on making changes to 5 mechanics projects from the [100 Unity Mechanics for Programmers](https://github.com/t4guw/100-Unity-Mechanics-for-Programmers) repo.
