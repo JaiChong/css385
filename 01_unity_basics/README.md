@@ -1,4 +1,4 @@
-Unity Basics >
+[Repo](https://github.com/JaiChong/css385/tree/main/01_unity_basics) > Unity Basics >
 
 # Unity Basics
 1. [WASD Dash Movement in 2D](https://jaichong.github.io/css385/01_unity_basics/wasd_dash_movement_2d/)
