@@ -2,7 +2,7 @@
 ( [Repo](https://github.com/JaiChong/css385/tree/main/01_unity_basics/) / [Page](https://jaichong.github.io/css385/01_unity_basics/) )
 
 ## Description
-This assignment focuses on making changes to 5 mechanics projects from the [100 Unity Mechanics for Programmers](https://github.com/t4guw/100-Unity-Mechanics-for-Programmers) repo.
+This assignment entails making variations of 5 projects from the [100 Unity Mechanics for Programmers](https://github.com/t4guw/100-Unity-Mechanics-for-Programmers) repo.
 
 ## Projects
 1. [WASD Dash Movement in 2D](https://jaichong.github.io/css385/01_unity_basics/wasd_dash_movement_2d/)
