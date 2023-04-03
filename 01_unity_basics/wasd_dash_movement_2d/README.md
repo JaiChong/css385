@@ -1,77 +1,10 @@
-# WASD Movement (2D)
+# WASD Dash Movement (2D)
 
 ## Description
-This mechanic shows how to implement movement in 2D for a user's character using a set of input keys. The code below is implemented using the WASD and arrow keys, common sets for many games. However, it can be modified to incorporate/utilize any set of keys, such as IJKL.
+This mechanic is a variation of the `wasd_movement_2d` project from the repo `t4guw/100-Unity-Mechanics-for-Programmers`; not forked to avoid cloning unwanted projects.  Changes enable dash movement in 2D for a user's character using a set of input keys.
 
-## Implementation
-The following code shows how to implement 2D character movement using WASD keys. The "speed" variable can be adjusted to change the speed at which the character moves. Another speed variable could be introduced if the developer wanted to create different speeds for different directions, such as moving faster forwards than backwards. Ensure a RigidBody2D component has been added to the GameObject with gravity set to 0.
-
-    using UnityEngine;
-
-    public class Movement : MonoBehaviour
-    {
-        public float speed = 10f;
-
-        void Update()
-        {
-            Vector3 pos = transform.position;
-
-            if (Input.GetKey(KeyCode.W))
-            {
-                pos.y += speed * Time.deltaTime;
-            }
-
-            if (Input.GetKey(KeyCode.S))
-            {
-                pos.y -= speed * Time.deltaTime;
-            }
-
-            if (Input.GetKey(KeyCode.D))
-            {
-                pos.x += speed * Time.deltaTime;
-            }
-
-            if (Input.GetKey(KeyCode.A))
-            {
-                pos.x -= speed * Time.deltaTime;
-            }
-
-            transform.position = pos;
-        }
-    }
-
-The above code can be slightly modified to utilize a different set of keys, such as the arrow keys, as follows:
-
-    using UnityEngine;
-
-    public class Movement : MonoBehaviour
-    {
-        public float speed = 10f;
-
-        void Update()
-        {
-            Vector3 pos = transform.position;
-
-            if (Input.GetKey(KeyCode.UpArrow))
-            {
-                pos.y += speed * Time.deltaTime;
-            }
-
-            if (Input.GetKey(KeyCode.DownArrow))
-            {
-                pos.y -= speed * Time.deltaTime;
-            }
-
-            if (Input.GetKey(KeyCode.RightArrow))
-            {
-                pos.x += speed * Time.deltaTime;
-            }
-
-            if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                pos.x -= speed * Time.deltaTime;
-            }
-
-            transform.position = pos;
-        }
-    }
+## Implemented Changes
+1. A struct called `BufferData` stores the `int` down-counters `bufferFrames` and `dashFrames`, as well `bool`s that track whether `up`, `down`, `right`, and/or `left` inputs have been read within the buffer window implemented in `Update()`.
+2. `public float speed` has been replaced by `public float distance`.  `speed` was only used to calculate the distance traveled on each frame in tandem with `Time.deltaTime` to enable real-time checks for stopping and going.  Since distance only checks once during a buffer window for input, and the distance traveled should be consistent, this was replaced.
+3. `Start()` has been added to initialize the values of the BufferData instance `bd`.  By default, `bd.bufferFrames = 3` and `bd.dashFrames = 10`, and each `bd.<direction> = false`.
+4. `Update()` now features 2 sections: a buffer window that reads for inputs by setting `bd.<direction> = true`, entered if `(bd.bufferFrames > 0)`, and a position updater, entered if `!(bd.bufferFrames > 0)` and `(bd.dashFrames > 0)`.  Both sections decrement their respective down-counters.  Once `!(bd.dashFrames > 0)`, `bd`'s values are reset to what they were from `Start()`.
