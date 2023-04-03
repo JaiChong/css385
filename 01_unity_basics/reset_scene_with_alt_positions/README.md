@@ -6,6 +6,7 @@ This mechanic is a variation of the [Reset Level/Scene](https://github.com/t4guw
 
 ## Implemented Changes
 1. Added two additional scenes in which the starting position is set 7 units to the left or right, triggered by holding left or right while pressing R or respawning.  This, of course, required implementation in both Reset scripts.
+    - Unfortunately, since I'm unsure of how to properly unload inactive scenes, there is a memory leak whenever the application is reset to an alternate position.
 
 #### Alternate (Failed) Implementation
 Since using additional scenes felt crude, I initially wanted to implement the alternate reset positions into a script (namely, Movement.cs) linked to the Player object.  I attempted this by implementing the following `Start()` function, but it failed since Unity doesn't seem to check for inputs held before loading the scene.
