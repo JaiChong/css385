@@ -1,5 +1,5 @@
 # Space-Bar to Spinning Double-Jump
-( [Repo](https://github.com/JaiChong/css385/tree/main/01_unity_basics/space_spinning_double_jump/) / [Page](https://jaichong.github.io/css385/01_unity_basics/space_spinning_double_jump/) / [Page](https://jaichong.github.io/css385/01_unity_basics/space_spinning_double_jump/build_webgl) )
+( [Repo](https://github.com/JaiChong/css385/tree/main/01_unity_basics/space_spinning_double_jump/) / [Page](https://jaichong.github.io/css385/01_unity_basics/space_spinning_double_jump/) / [WebGL](https://jaichong.github.io/css385/01_unity_basics/space_spinning_double_jump/build_webgl) )
 
 ## Description
 This mechanic is a variation of the [Space-Bar to Double-Jump](https://github.com/t4guw/100-Unity-Mechanics-for-Programmers/tree/master/programs/space_double_jump) project, which in turn built upon the [Space-Bar to Jump](https://github.com/t4guw/100-Unity-Mechanics-for-Programmers/tree/master/programs/space_to_jump_2d) project.  The change made distinguishes the ground jump from its midair double-jump counterpart by adding a spin, a common visual added to double-jumps in videogames.
