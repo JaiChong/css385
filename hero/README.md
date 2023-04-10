@@ -1,5 +1,5 @@
 # Hero
-( [Repo](https://github.com/JaiChong/css385/hero) / [Page](https://JaiChong.github.io/css385/hero) [WebGL](https://JaiChong.github.io/css385/hero/webgl/))
+( [Repo](https://github.com/JaiChong/css385/tree/main/hero) / [Page](https://JaiChong.github.io/css385/hero) / [WebGL](https://JaiChong.github.io/css385/hero/webgl/))
 
 
 ## Description
