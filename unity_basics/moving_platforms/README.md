@@ -1,5 +1,5 @@
 # Moving Platforms
-( [Repo](https://github.com/JaiChong/css385/tree/main/01_unity_basics/moving_platforms/) / [Page](https://jaichong.github.io/css385/01_unity_basics/moving_platforms/) / [WebGL](https://jaichong.github.io/css385/01_unity_basics/moving_platforms/build_webgl/) )
+( [Repo](https://github.com/JaiChong/css385/tree/main/unity_basics/moving_platforms/) / [Page](https://jaichong.github.io/css385/unity_basics/moving_platforms/) / [WebGL](https://jaichong.github.io/css385/unity_basics/moving_platforms/build_webgl/) )
 
 ## Description
 This mechanic is a variation of the [Platforms](https://github.com/t4guw/100-Unity-Mechanics-for-Programmers/tree/master/programs/platforms) project. The original game featured rows of mostly blocks that could be ascended through via the single more transparent platform block on each row, which did allow one-way movement and so could be jump through.  This variation instead gives focus to ascending the platform blocks as they move horizontally back and forth, without rows of blocks in the way.

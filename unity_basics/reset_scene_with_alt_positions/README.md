@@ -1,5 +1,5 @@
 # Reset Scene with Alternate Positions
-( [Repo](https://github.com/JaiChong/css385/tree/main/01_unity_basics/reset_scene_with_alt_positions) / [Page](https://jaichong.github.io/css385/01_unity_basics/reset_scene_with_alt_positions/) / [WebGL](https://jaichong.github.io/css385/01_unity_basics/reset_scene_with_alt_positions/build_webgl) )
+( [Repo](https://github.com/JaiChong/css385/tree/main/unity_basics/reset_scene_with_alt_positions) / [Page](https://jaichong.github.io/css385/unity_basics/reset_scene_with_alt_positions/) / [WebGL](https://jaichong.github.io/css385/unity_basics/reset_scene_with_alt_positions/build_webgl) )
 
 ## Description
 This mechanic is a variation of the [Reset Level/Scene](https://github.com/t4guw/100-Unity-Mechanics-for-Programmers/tree/master/programs/reset_scene) project.  The change enables alternate positions while resetting a scene/level on keypress or falling out of a screen, in tandem with a held directional arrow button.
