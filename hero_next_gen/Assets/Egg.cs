@@ -12,15 +12,15 @@ public class Egg : MonoBehaviour
     private Rigidbody2D rb;
 
     private float speed = 40f;  // 40 units/sec, as per assignment
-    private float vrtRange;
-    private float hrzRange;
+    private float vrtCamRange;
+    private float hrzCamRange;
     
     void Start()
     {
         // Obtain world boundaries
         Camera cam = Camera.main;
-        vrtRange = 0.5f * 2f * cam.orthographicSize;
-        hrzRange = vrtRange * cam.aspect;
+        vrtCamRange = 0.5f * 2f * cam.orthographicSize;
+        hrzCamRange = vrtCamRange * cam.aspect;
         
         // Obtain component
         rb = GetComponent<Rigidbody2D>();
@@ -33,7 +33,7 @@ public class Egg : MonoBehaviour
         
         // Expires when leaving the world bound
         Vector3 pos = transform.position;
-        if (pos.x < -hrzRange || pos.x > hrzRange || pos.y < -vrtRange || pos.y > vrtRange)
+        if (pos.x < -hrzCamRange || pos.x > hrzCamRange || pos.y < -vrtCamRange || pos.y > vrtCamRange)
         {
             Destroy(gameObject);
         }
@@ -42,7 +42,7 @@ public class Egg : MonoBehaviour
     // Expires when colliding with enemy
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag == "Enemy")
+        if (col.tag == "Enemy" || col.tag.Contains("Waypoint"))
         {
             Destroy(gameObject);
         }

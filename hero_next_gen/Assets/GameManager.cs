@@ -6,36 +6,55 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject enemy;
     public Text textElement;
     public string textValue;
-    public struct GameManagerData
-    {
-        // Used by Enemy.cs
-        //public bool enemiesFollowing;
+    public int enemyTargetRandom;
+    public bool enemyTargetHero;
+    public string enemyTargetSequential;
 
-        // Prints
-        public int eggsInWorld;             // "Graded based on proper application status echo of number of eggs currently spawned", updated in Hero.cs
-        public int enemiesInWorld;          // should always be 10; updated here
-        public int enemiesDestroyed;        // updated in Enemy.cs
-        public int collisionsWithEnemies;   // number of times hero has touched an enemy, updated in Hero.cs
-        public int heroDeaths;
+    // prints
+    public string movementControl;      // updated by Hero.cs
+    public int eggsInWorld;             // updated here
+    public int enemiesInWorld;          // updated here; should always be 10
+    public int enemiesDestroyed;        // updated by Enemy.cs
+    public int waypointsDestroyed;      // updated by Waypoints.cs
+    public int collisionsWithEnemies;   // updated by Hero.cs; number of times hero has touched an enemy
+    public int heroDeaths;              // updated by Hero.cs
+
+    public struct WaypointData
+    {
+        public string tag;
+        public bool destroyed;
     }
-    public GameManagerData gmd = new GameManagerData();
+    public WaypointData[] wds = new WaypointData[6];
 
     void Start()
     {
         // Initialize text
-        textValue = " Eggs in World:                0\n" +
-                    " Enemies in World:          0\n" +
-                    " Enemies Destroyed:       0\n" +
-                    " Collisions with Enemies: 0\n" +
-                    " Hero Deaths:                  0";
+        textValue = "    Movement Control Scheme: Mouse\n" +
+                    "    Eggs in World:                        0\n" +
+                    "    Enemies in World:                 0\n" +
+                    "    Enemies Destroyed:              0\n" +
+                    "    Waypoints Destroyed:           0\n" +
+                    "    Collisions with Enemies:      0\n" +
+                    "    Hero Deaths:                          0\n";
         textElement.text = textValue;
 
+        // Initializes enemy target values
+        enemyTargetRandom = -1;
+        enemyTargetHero = false;
+        enemyTargetSequential = "WaypointA";
+
         // Initializes struct values
-        //gmd.enemiesFollowing = false;
-        gmd.eggsInWorld = 0;
-        gmd.enemiesInWorld = 0;
-        gmd.enemiesDestroyed = 0;
-        gmd.collisionsWithEnemies = 0;
+       eggsInWorld = 0;
+       enemiesInWorld = 0;
+       enemiesDestroyed = 0;
+       collisionsWithEnemies = 0;
+
+        // Populates WaypointData array
+        for (int i = 0; i < 6; i++)
+        {
+            wds[i].tag = "Waypoint" + (char)(65+i);
+            wds[i].destroyed = false;
+        }
     }
 
     void Update()
@@ -45,20 +64,53 @@ public class GameManager : MonoBehaviour
             Application.Quit();
         }
         
-        textValue = " Eggs in World:                " + gmd.eggsInWorld + "\n" +
-                    " Enemies in World:          " + gmd.enemiesInWorld + "\n" +
-                    " Enemies Destroyed:       " + gmd.enemiesDestroyed + "\n" +
-                    " Collisions with Enemies: " + gmd.collisionsWithEnemies + "\n" +
-                    " Hero Deaths:                  " + gmd.heroDeaths;
+        // Check for target change input
+        if (Input.GetKeyDown("j"))
+        {
+            if (enemyTargetRandom == -1)
+            {
+                enemyTargetRandom = Random.Range(0,5);
+            }
+            else
+            {
+                enemyTargetRandom = -1;
+            }
+            enemyTargetHero = false;
+        }
+        else if (Input.GetKeyDown("k"))
+        {
+            enemyTargetHero = !enemyTargetHero;
+            enemyTargetRandom = -1;
+        }
+        
+        textValue = "    Movement Control Scheme: " +movementControl + "\n" +
+                    "    Eggs in World:                        " + eggsInWorld + "\n" +
+                    "    Enemies in World:                 " + enemiesInWorld + "\n" +
+                    "    Enemies Destroyed:              " + enemiesDestroyed + "\n" +
+                    "    Waypoints Destroyed:           " + waypointsDestroyed + "\n" +
+                    "    Collisions with Enemies:      " + collisionsWithEnemies + "\n" +
+                    "    Hero Deaths:                          " + heroDeaths + "\n";
         textElement.text = textValue;
 
-        gmd.eggsInWorld = GameObject.FindGameObjectsWithTag("Egg").Length;
-        gmd.enemiesInWorld = GameObject.FindGameObjectsWithTag("Enemy").Length;
+       eggsInWorld = GameObject.FindGameObjectsWithTag("Egg").Length;
+       enemiesInWorld = GameObject.FindGameObjectsWithTag("Enemy").Length;
 
-        while (gmd.enemiesInWorld < 10)
+        while (enemiesInWorld < 10)
         {
             Instantiate(enemy);
-            gmd.enemiesInWorld++;
+           enemiesInWorld++;
+        }
+
+        for (int i = 0; i < 6; i++)
+        {
+            if (wds[i].destroyed)
+            {
+                wds[i].destroyed = false;
+                if (enemyTargetRandom == -1 && !enemyTargetHero && enemyTargetSequential == wds[i].tag)
+                {
+                    enemyTargetSequential = wds[(i+1)%6].tag;
+                }
+            }
         }
     }
 }
