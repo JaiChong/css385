@@ -7,6 +7,13 @@ TagManager:
   - Egg
   - Enemy
   - Hero
+  - Waypoint
+  - WaypointA
+  - WaypointB
+  - WaypointC
+  - WaypointD
+  - WaypointE
+  - WaypointF
   layers:
   - Default
   - TransparentFX
@@ -17,7 +24,7 @@ TagManager:
   - Hero
   - Egg
   - Enemy
-  - 
+  - Waypoint
   - 
   - 
   - 
