@@ -1,5 +1,5 @@
 # WASD Dash Movement in 2D
-( [Repo](https://github.com/JaiChong/css385/tree/main/01_unity_basics/wasd_dash_movement_2d) / [Page](https://jaichong.github.io/css385/01_unity_basics/wasd_dash_movement_2d/) / [WebGL](https://jaichong.github.io/css385/01_unity_basics/wasd_dash_movement_2d/build_webgl) )
+( [Repo](https://github.com/JaiChong/css385/tree/main/unity_basics/wasd_dash_movement_2d) / [Page](https://jaichong.github.io/css385/unity_basics/wasd_dash_movement_2d/) / [WebGL](https://jaichong.github.io/css385/unity_basics/wasd_dash_movement_2d/build_webgl) )
 
 ## Description
 This mechanic is a variation of the [WASD Movement in 2D](https://github.com/t4guw/100-Unity-Mechanics-for-Programmers/tree/master/programs/wasd_movement_2d) project.  Changes enable dash movement in 2D for a user's character using a set of input keys.
