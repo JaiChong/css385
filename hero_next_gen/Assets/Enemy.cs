@@ -51,7 +51,7 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            target = GameObject.FindGameObjectWithTag(gm.enemyTargetSequential);
+            target = GameObject.FindGameObjectWithTag(gm.wds[gm.enemyTargetSequential].tag);
         }
 
         // Updates position

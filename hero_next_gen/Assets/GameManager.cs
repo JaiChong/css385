@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public string textValue;
     public int enemyTargetRandom;
     public bool enemyTargetHero;
-    public string enemyTargetSequential;
+    public int enemyTargetSequential;
 
     // prints
     public string movementControl;      // updated by Hero.cs
@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
         // Initializes enemy target values
         enemyTargetRandom = -1;
         enemyTargetHero = false;
-        enemyTargetSequential = "WaypointA";
+        enemyTargetSequential = 0;
 
         // Initializes struct values
        eggsInWorld = 0;
@@ -69,7 +69,8 @@ public class GameManager : MonoBehaviour
         {
             if (enemyTargetRandom == -1)
             {
-                enemyTargetRandom = Random.Range(0,5);
+                enemyTargetRandom = 6;
+                NextWaypoint(-1);
             }
             else
             {
@@ -98,19 +99,38 @@ public class GameManager : MonoBehaviour
         while (enemiesInWorld < 10)
         {
             Instantiate(enemy);
-           enemiesInWorld++;
+            enemiesInWorld++;
         }
 
         for (int i = 0; i < 6; i++)
         {
-            if (wds[i].destroyed)
+            if (wds[i].destroyed && ((i == enemyTargetRandom && enemyTargetRandom >= 0)
+                                  || (i == enemyTargetSequential && enemyTargetRandom == -1 && !enemyTargetHero)))
             {
                 wds[i].destroyed = false;
-                if (enemyTargetRandom == -1 && !enemyTargetHero && enemyTargetSequential == wds[i].tag)
-                {
-                    enemyTargetSequential = wds[(i+1)%6].tag;
-                }
+                NextWaypoint(i);
             }
+        }
+    }
+
+    void NextWaypoint(int i)
+    {
+        // if targetting randomly, updates to next unique random
+        if (enemyTargetRandom >= 0)
+        {
+            int res;
+            do
+            {
+                res = Random.Range(0,5);
+            } while (res == enemyTargetRandom || res == enemyTargetSequential);
+            enemyTargetRandom = res;
+        }
+
+        // if targetting sequentially, updates to next in sequence
+        else if (!enemyTargetHero)
+        {
+            enemyTargetSequential = (i+1)%6;
+            Debug.Log("hello");
         }
     }
 }

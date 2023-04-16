@@ -23,7 +23,6 @@ public class Waypoint : MonoBehaviour
     void Start()
     {
         wdsIndex = (byte)name[0] - 65;
-        Debug.Log(wdsIndex);
         
         //Obtain game manager and game object
         gm = GameObject.Find("Manager").GetComponent<GameManager>();
@@ -32,6 +31,7 @@ public class Waypoint : MonoBehaviour
         // Obtain components, set as trigger, and initialize stored color
         bc = GetComponent<BoxCollider2D>();
         bc.isTrigger = true;
+        rb = GetComponent<Rigidbody2D>();
         r = GetComponent<Renderer>();
         color = r.material.color;
 
@@ -47,11 +47,15 @@ public class Waypoint : MonoBehaviour
             if (!d.hidden)
             {
                 r.material.color = new Color(0,0,0,0);
+                rb.simulated = false;
+                bc.isTrigger = false;
                 d.hidden = true;
             }
             else
             {
                 r.material.color = color;
+                rb.simulated = true;
+                bc.isTrigger = true;
                 d.hidden = false;
             }
         }
