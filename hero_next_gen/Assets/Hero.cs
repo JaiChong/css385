@@ -52,7 +52,6 @@ public class Hero : MonoBehaviour
         if (d.respawnTimer > 0)
         {
             d.respawnTimer -= Time.deltaTime;
-            Debug.Log(d.respawnTimer);
         }
 
         else
