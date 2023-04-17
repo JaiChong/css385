@@ -3,12 +3,7 @@
 
 
 ## Description
-I included the following extra features:
-
-### New to Next Generation Hero
-1. 
-
-### Grandfathered in from Hero
+I included the following extra features (grandfathered form Hero, so no extra credit):
 1. Press "Right-Click" in mouse-input mode to toggle Left-Click-to-Travel.
 2. Press "K" to toggle enemy targeting between sequential waypoints and the player.
 3. Enemy collisions hurt the player, and the number of player deaths are recorded.
