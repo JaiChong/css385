@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System;
-using System.Text;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -15,6 +13,10 @@ public class Enemy : MonoBehaviour
     private Color color;
     private float vrtCamRange;
     private float hrzCamRange;
+
+    private int targetSequential;
+    private int targetRandom;
+    private bool targetHero;
 
     void Start()
     {
@@ -33,31 +35,66 @@ public class Enemy : MonoBehaviour
         vrtCamRange = 0.45f * 2f * cam.orthographicSize;
         hrzCamRange = vrtCamRange * cam.aspect;
 
+        // Initializes target vlaues
+        targetSequential = 0;
+        targetRandom = -1;
+        targetHero = false;
+
         // Randomizes spawn location using vrtCamRange and hrzCamRange as boundaries
         Spawn();
     }
 
     void Update()
     {
-        // Updates target
-        GameObject target;
-        if (gm.enemyTargetRandom >= 0)
+        // Check for target change input
+        if (Input.GetKeyDown("j"))
         {
-            target = GameObject.FindGameObjectWithTag(gm.wds[gm.enemyTargetRandom].tag);
+            if (targetRandom == -1)
+            {
+                targetRandom = 6;
+                NextTargetWaypoint(-1);
+            }
+            else
+            {
+                targetRandom = -1;
+            }
+            targetHero = false;
         }
-        else if (gm.enemyTargetHero)
+        else if (Input.GetKeyDown("k"))
+        {
+            targetHero = !targetHero;
+            targetRandom = -1;
+        }
+        
+        // Updates target based on input
+        GameObject target;
+        if (targetRandom >= 0)
+        {
+            target = GameObject.FindGameObjectWithTag(gm.wds[targetRandom].tag);
+            if (transform.position == target.transform.position)
+            {
+                NextTargetWaypoint(-1);
+                target = GameObject.FindGameObjectWithTag(gm.wds[targetRandom].tag);
+            }
+        }
+        else if (targetHero)
         {
             target = hero;
         }
-        else
+        else // targetting sequentially
         {
-            target = GameObject.FindGameObjectWithTag(gm.wds[gm.enemyTargetSequential].tag);
+            target = GameObject.FindGameObjectWithTag(gm.wds[targetSequential].tag);
+            if (transform.position == target.transform.position)
+            {
+                NextTargetWaypoint(targetSequential);
+                target = GameObject.FindGameObjectWithTag(gm.wds[targetSequential].tag);
+            }
         }
 
         // Updates position
         Vector3 direction = target.transform.position - transform.position; 
         rb.rotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
-        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, 5*Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, 20*Time.deltaTime);
         rb.position = transform.position;
     }
 
@@ -89,7 +126,28 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void Spawn()
+    // Passed -1 if obtaining a new targetRandom, or 0-5 if obtaining a new targetSequential
+    void NextTargetWaypoint(int i)
+    {
+        // if targetting randomly, updates to next unique random
+        if (targetRandom >= 0)
+        {
+            int res;
+            do
+            {
+                res = Random.Range(0,5);
+            } while (res == targetRandom || res == targetSequential);
+            targetRandom = res;
+        }
+
+        // if targetting sequentially, updates to next in sequence
+        else if (!targetHero)
+        {
+            targetSequential = (targetSequential + 1) % 6;
+        }
+    }
+    
+    void Spawn()
     {
         // Spawned randomly within 90% of world boundaries
         transform.position = new Vector3(UnityEngine.Random.Range(-hrzCamRange, hrzCamRange), UnityEngine.Random.Range(-vrtCamRange, vrtCamRange), 10);
